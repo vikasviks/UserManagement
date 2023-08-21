@@ -1,0 +1,89 @@
+<div class="container">
+  <nav class="navbar navbar-expand-sm" style="background-color: rgba(0, 0, 0, 0.05);">
+    <a class="navbar-brand">
+      <p class="text-dark">Vikas</p>
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ">
+        <li class="nav-item">
+          <a class="nav-link">
+            <p class="text-dark">Home</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-4">
+      <h1 class="text-center">User List</h1>
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Age</th>
+            <th class="text-center">Phone</th>
+            <th class="text-center">Address</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.age }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.address }}</td>
+            <td>
+              <button type="button" class="btn btn-info btn-sm mr-2" (click)="showEditUserForm(user)">Edit</button>
+
+              <button type="button" class="btn btn-danger btn-sm" (click)="removeUser(user)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-success" (click)="showAddUserForm()">Add New User</button>
+
+      <div class="mt-4">
+        <form *ngIf="userForm">
+          <h2>Add New User</h2>
+          <p>Name: <input type="text" name="name" [(ngModel)]="newUser.name" /></p>
+          <p>Age: <input type="number" name="age" [(ngModel)]="newUser.age" /></p>
+          <p>Phone No.: <input type="text" name="phone" [(ngModel)]="newUser.phone" /></p>
+          <p>Address: <input type="text" name="address" [(ngModel)]="newUser.address" /></p>
+          <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="saveUser(newUser)">Submit</button>
+            <button type="button" class="btn btn-warning" (click)="cancelNewUser()">Cancel</button>
+          </p>
+        </form>
+
+        <form *ngIf="editUserForm">
+          <h2>Edit User Details</h2>
+          <p>Name: <input type="text" name="name" [(ngModel)]="editedUser.name" /></p>
+          <p>Age: <input type="text" name="age" [(ngModel)]="editedUser.age" /></p>
+          <p>Phone No. : <input type="text" name="phone" [(ngModel)]="editedUser.phone" /></p>
+          <p>Address: <input type="text" name="address" [(ngModel)]="editedUser.address" /></p>
+          <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="updateUser()">Submit</button>
+            <button type="button" class="btn btn-warning" (click)="cancelEdits()">Cancel</button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="text-center bg-light text-muted fixed-bottom">
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2023 Copyright:
+    <a class="text-reset fw-bold">Vikas</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
